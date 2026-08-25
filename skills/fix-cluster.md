@@ -19,7 +19,7 @@ It is the execute half of a capture-and-execute pair. `/log-issue` puts findings
 ### 1. Resolve the issue list
 
 - Numeric args (`#37`, or `#22 #26 #39`) - that exact list.
-- Label args (`trust`, or `p0 trust`) - `gh issue list --repo <repo> --label qa,<labels> --state open --json number,title,body,labels`. AND semantics across labels.
+- Label args (`trust`, or `p0 trust`) - `gh issue list --label <labels> --state open --json number,title,body,labels`, run from inside the repo. AND semantics across labels. If your repo scopes bugs under a `qa` label, add it to the list; do not hardcode one, because a label that does not exist returns zero issues silently and that reads as "nothing to fix".
 
 Fetch each body. **The body is the spec.** If a body is too thin to implement from, say so and stop rather than inventing the requirement.
 

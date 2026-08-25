@@ -23,8 +23,10 @@ If that fails (not a git repo, no remote), ask once which repo to file against, 
 ### 2. Check for duplicates first
 
 ```
-gh issue list --repo <repo> --label qa --state open --limit 50 --json number,title
+gh issue list --repo <repo> --state open --limit 50 --json number,title,labels
 ```
+
+If the repo uses a bug label, narrow with `--label <label>`. Do not assume one exists - a label that is not defined returns an empty list rather than an error, and an empty list looks exactly like "no duplicates".
 
 If a clear match exists, comment on the existing issue with the note verbatim plus today's date instead of filing a new one:
 
@@ -53,13 +55,13 @@ Do not add "Steps to reproduce / Expected / Actual" scaffolding unless the note 
 ### 4. File it
 
 ```
-gh issue create --repo <repo> --title "<title>" --label qa --body "$(cat <<'EOF'
+gh issue create --repo <repo> --title "<title>" [--label <label>] --body "$(cat <<'EOF'
 <body markdown>
 EOF
 )"
 ```
 
-If the `qa` label does not exist on that repo, retry without it. Do not auto-create labels - repos differ and label taxonomies are somebody's deliberate choice.
+Only pass `--label` if that label already exists on the repo; if the call fails on an unknown label, retry without it. Do not auto-create labels - repos differ and label taxonomies are somebody's deliberate choice.
 
 ### 5. Report back
 
