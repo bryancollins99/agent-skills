@@ -68,6 +68,15 @@ Fixes a set of related issues as one pull request. Issue bodies are the spec.
 
 Five small related bugs handled separately costs five context loads and five reviews, and each fix is made without sight of the other four. This plans the cluster, shows you the risks before touching code, branches once and opens one PR with a `Closes #N` line per issue. If the cluster is too big or spans more than one surface, it proposes a split instead of shipping a review-hostile PR.
 
+**Keeping automation honest**
+
+### `/cron-staleness`
+Audits every scheduled GitHub Actions workflow for silent death: not the runs that failed, the runs that should have happened and did not.
+
+`gh run list --status failure` cannot see a cron that stopped firing, because a workflow that never runs produces no failed run and no notification. The dashboard stays green on checks that are not executing. This derives each workflow's expected cadence from its own cron expression, compares it against the last successful run, and separately flags anything GitHub auto-disabled after 60 days of repository inactivity.
+
+Run on my own portfolio it found a build check, a Core Web Vitals check and two link scrapers that had not fired in weeks, while a weekly monitoring email reported on them the entire time.
+
 **Thinking and communicating**
 
 ### `/decide`
@@ -79,6 +88,13 @@ Decision tables rot as leans. A plan that says `Lean: probably Postgres` is not 
 Retells whatever you just built or found as plain-language use cases from the point of view of the person who benefits, not the person who built it.
 
 No file paths, no PR numbers, no "shipped" or "wired" or "implemented". Useful when you need to tell a client, a newsletter, or yourself in three months what the work actually does for someone.
+
+### `/notes-to-ideas`
+Mines a folder of your own notes for things worth writing, weighted to recent material but forced to resurface older notes that connect to a current thread. Ideation only. It never drafts.
+
+Pointing an agent at your notes to write for you produces an impression of you. The job it is actually better at than you are is retrieval: finding the note from two years ago that answers what you are stuck on this week, which no tagging system fixes because you did not know to make the connection at the time.
+
+The rule that keeps it working past the third run is the distinction between an idea that has been *drafted* and one that was merely *surfaced*. Retiring surfaced-but-unwritten ideas feels like hygiene and degrades the list to the bottom of the barrel within a month.
 
 ## What this is not
 
