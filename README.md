@@ -96,6 +96,13 @@ Pointing an agent at your notes to write for you produces an impression of you. 
 
 The rule that keeps it working past the third run is the distinction between an idea that has been *drafted* and one that was merely *surfaced*. Retiring surfaced-but-unwritten ideas feels like hygiene and degrades the list to the bottom of the barrel within a month.
 
+### `/remember`
+Captures what the session taught into a file-based memory store, and separately flags memories whose commitment date has passed.
+
+Agent memory rots in two directions and most setups only watch one. Forgetting is the obvious failure. Accumulation is the expensive one: a store that only grows fills with reversed decisions and dead projects, gets loaded into context on every single run, and makes the agent act on things that stopped being true.
+
+The design constraint that makes it usable daily is that the staleness pass is a deterministic script, not a model pass. It reads the files outside the model and prints a shortlist; the model only looks at what it surfaced. A version that reads the whole store to decide what is stale is one you stop running.
+
 ## What this is not
 
 A framework, a package, or a product. Just files that work.
