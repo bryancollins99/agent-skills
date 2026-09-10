@@ -19,7 +19,7 @@ git clone https://github.com/bryancollins99/agent-skills.git
 cp agent-skills/skills/*.md ~/.claude/commands/
 ```
 
-Then type `/pre-commit-review`, `/fix-cluster`, `/decide` or any of the others.
+Then type `/pre-commit-review`, `/fix-cluster`, `/decide`, `/wiring` or any of the others. `/wiring` also needs its helper: `cp -r agent-skills/scripts ~/.claude/scripts/wiring` or run it from the clone.
 
 **Any other agent:** open the file and paste it as your instruction. They are written as procedures, not as tool calls.
 
@@ -55,6 +55,13 @@ Lists merged and stale local branches, deletes the safe ones, flags the rest. Ne
 The reason it exists: **`git branch -d` does not understand squash merges.** If you squash-merge pull requests, git refuses to delete branches whose work is already in `main`, so they pile up for months. This checks merge state externally with `gh pr list` instead of trusting git, so squash-merged branches are correctly identified as safe.
 
 Run on my own repos, it found 31 branches in exactly that state.
+
+**Wiring and environment**
+
+### `/wiring`
+Compares the secrets and env vars your code declares against what is actually set, on both GitHub Actions and Netlify. Derived from the repo every run, no registry to drift.
+
+The reason it exists: **a site could not send email for months while every check was green.** The API key was set; three other variables the function needed were not. Workflow green, deploy green, variable absent. It also encodes the traps found while validating it: `netlify env:list --plain` redacts secrets as empty (not absent), vars set only on deploy-preview read as wired and are not, and `gh secret list --org` 403s without admin while the per-repo org-secrets endpoint does not. Helper script in `scripts/wiring.py`, stdlib only.
 
 **Issues to shipped code**
 
