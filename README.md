@@ -75,6 +75,11 @@ Fixes a set of related issues as one pull request. Issue bodies are the spec.
 
 Five small related bugs handled separately costs five context loads and five reviews, and each fix is made without sight of the other four. This plans the cluster, shows you the risks before touching code, branches once and opens one PR with a `Closes #N` line per issue. If the cluster is too big or spans more than one surface, it proposes a split instead of shipping a review-hostile PR.
 
+### `/best-of-both`
+Compares two agents' builds of the same spec section by section, picks a base, and writes one brief that folds the other build's best ideas into it.
+
+The reason it exists: **picking a winner throws away what the loser got right.** On a paid-placement leaderboard the GPT build was the better page, but the Claude build handled empty categories far better, and on launch day every category was empty. It forces a check of the empty, first-use and error states, counts over-building as a cost, and replaces "can you improve your version?" with a named keep / adopt / drop list.
+
 **Keeping automation honest**
 
 ### `/cron-staleness`
