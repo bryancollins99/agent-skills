@@ -108,6 +108,11 @@ Pointing an agent at your notes to write for you produces an impression of you. 
 
 The rule that keeps it working past the third run is the distinction between an idea that has been *drafted* and one that was merely *surfaced*. Retiring surfaced-but-unwritten ideas feels like hygiene and degrades the list to the bottom of the barrel within a month.
 
+### `/idea-scorecard`
+Generates a big batch of business ideas against your own constraints, scores each on VRIO plus personal fit, and builds an interactive dashboard you can filter, sort and turn into build prompts.
+
+The reason it exists: **the ranking is worth more than the list.** On the run it came from, a prompt asking for 101 ideas returned 104, and the top two scored 89 out of 100 with the advice to ship them as paid features on a site already running instead of starting new brands. The bottom of the list was just as useful: it named which pet ideas were a personal itch rather than a business. It also warns about the cost (about half a week's top-model allowance) and makes you count the rows before quoting a number.
+
 ### `/remember`
 Captures what the session taught into a file-based memory store, and separately flags memories whose commitment date has passed.
 
