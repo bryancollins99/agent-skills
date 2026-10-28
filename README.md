@@ -113,6 +113,11 @@ Generates a big batch of business ideas against your own constraints, scores eac
 
 The reason it exists: **the ranking is worth more than the list.** On the run it came from, a prompt asking for 101 ideas returned 104, and the top two scored 89 out of 100 with the advice to ship them as paid features on a site already running instead of starting new brands. The bottom of the list was just as useful: it named which pet ideas were a personal itch rather than a business. It also warns about the cost (about half a week's top-model allowance) and makes you count the rows before quoting a number.
 
+### `/three-concepts`
+Redesigns a multi-step flow (sign up, onboarding, upgrade) by asking for three concepts per step, each based on a named real product's screens, delivered as one local HTML file you QA by eye before any code changes.
+
+The reason it exists: **one AI design per step means you only find the bad idea after you build it.** On a three-stage sign up funnel, a chatbox layout borrowed from a copywriting tool and a newspaper-style paywall both looked wrong within seconds once they sat next to the alternatives. It forces real design references (a design library MCP, or URLs you supply) instead of the generic look agents default to, and a simplification round before anything ships.
+
 ### `/remember`
 Captures what the session taught into a file-based memory store, and separately flags memories whose commitment date has passed.
 
